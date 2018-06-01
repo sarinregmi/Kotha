@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Kotha</string>
+    <string name="title_activity_home">Map</string>
+    <string name="action_add">Add</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_add_listing">New Listing</string>
+    <string name="action_settings">Settings</string>
+</resources>

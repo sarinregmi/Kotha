@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FFFF9200</color>
+
+    <!-- Inventory Colors -->
+    <color name="black_with_opacity_35">#59000000</color>
+    <color name="black_with_opacity_60">#99000000</color>
+    <color name="black_with_opacity_20">#33000000</color>
+
+    <color name="background_efefef">#efefef</color>
+
+    <!-- Filter colors -->
+    <color name="white_with_opacity_70">#B3FFFFFF</color>
+    <color name="white_with_opacity_55">#8CFFFFFF</color>
+
+    <color name="next_state_normal">#FFFF9200</color>
+    <color name="next_state_pressed">#e88300</color>
+    <color name="next_state_disable">#8CFF9200</color>
+
+</resources>

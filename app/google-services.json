@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "161470143444",
+    "firebase_url": "https://kotha-nepal.firebaseio.com",
+    "project_id": "kotha-nepal",
+    "storage_bucket": "kotha-nepal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:161470143444:android:d1e673a081196c67",
+        "android_client_info": {
+          "package_name": "com.dumma.kotha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "161470143444-g0ki3npf10chma84viji4ljb8ten7btc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dumma.kotha",
+            "certificate_hash": "3c4ad8a0985e731469e7bfbfc79eaef2c54ee9e8"
+          }
+        },
+        {
+          "client_id": "161470143444-klpq1gbp9gg9np939un3e17af6t0ps5h.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "161470143444-klpq1gbp9gg9np939un3e17af6t0ps5h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVdA-Ze-4hFOmip-InWy5GFhYdKXl0gxA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "161470143444-klpq1gbp9gg9np939un3e17af6t0ps5h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
