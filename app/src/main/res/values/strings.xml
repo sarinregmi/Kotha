@@ -7,4 +7,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_add_listing">New Listing</string>
     <string name="action_settings">Settings</string>
+
+    <string name="image_position_format">%1$d of %2$d</string>
 </resources>

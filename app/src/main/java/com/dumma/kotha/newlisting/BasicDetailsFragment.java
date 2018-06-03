@@ -4,6 +4,7 @@ package com.dumma.kotha.newlisting;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -14,7 +15,7 @@ import android.widget.EditText;
 
 import com.dumma.kotha.R;
 import com.dumma.kotha.newlisting.models.BasicDetailsModel;
-import com.dumma.kotha.newlisting.models.Listing;
+import com.dumma.kotha.newlisting.models.TYPE;
 
 import java.util.Arrays;
 
@@ -22,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class BasicDetailsFragment extends AddListingFragment {
+public class BasicDetailsFragment extends Fragment {
 
     public static String TAG = BasicDetailsFragment.class.getSimpleName();
 
@@ -71,32 +72,42 @@ public class BasicDetailsFragment extends AddListingFragment {
         }
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        bdl = null;
+    }
+
     private void setTypeRecycler() {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.HORIZONTAL, false);
         optionsRecyclerView.setLayoutManager(gridLayoutManager);
-        adapter = new ButtonsAdapter(getActivity(), Arrays.asList(Listing.TYPE.class.getEnumConstants()));
+        adapter = new ButtonsAdapter(getActivity(), Arrays.asList(TYPE.class.getEnumConstants()));
         optionsRecyclerView.setAdapter(adapter);
     }
 
     @OnClick(R.id.nextButton)
-    public void nextButtonPressed(View view) {
+    public void nextButtonPressed() {
         String floor = floorNumber.getText().toString();
         String rooms = numberOfRooms.getText().toString();
         String baths = numberOfBath.getText().toString();
-        Listing.TYPE type = adapter.getSelectedType();
+        TYPE type = adapter.getSelectedType();
 
         String message = "";
         if (type == null) {
             message = "Select property type";
         } else if (TextUtils.isEmpty(rooms)) {
+            numberOfRooms.requestFocus();
             message = "Rooms count missing";
         } else if (TextUtils.isEmpty(baths)) {
             message = "Number of baths missing";
+            numberOfBath.requestFocus();
         } else if (TextUtils.isEmpty(floor)) {
+            floorNumber.requestFocus();
             message = "Floor missing";
         } else {
             BasicDetailsModel model = new BasicDetailsModel(type, Integer.parseInt(rooms), Integer.parseInt(baths), Integer.parseInt(floor));
             bdl.submitBasicDetails(model);
+            return;
         }
         showSnackbar(message);
     }

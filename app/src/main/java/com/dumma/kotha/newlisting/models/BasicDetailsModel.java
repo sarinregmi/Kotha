@@ -6,7 +6,7 @@ package com.dumma.kotha.newlisting.models;
 
 public class BasicDetailsModel {
 
-    private Listing.TYPE type;
+    private TYPE type;
     private int numberOfRooms;
     private int numberOfBath;
     private int floorNumber;
@@ -14,14 +14,14 @@ public class BasicDetailsModel {
     public BasicDetailsModel() {}
 
 
-    public BasicDetailsModel(Listing.TYPE type, int numberOfRooms, int numberOfBath, int floorNumber) {
+    public BasicDetailsModel(TYPE type, int numberOfRooms, int numberOfBath, int floorNumber) {
         this.type = type;
         this.numberOfRooms = numberOfRooms;
         this.numberOfBath = numberOfBath;
         this.floorNumber = floorNumber;
     }
 
-    public Listing.TYPE getType() {
+    public TYPE getType() {
         return type;
     }
 

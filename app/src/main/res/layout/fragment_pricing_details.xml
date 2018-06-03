@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
         android:fillViewport="true"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="65dp"
         android:overScrollMode="always"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -28,7 +28,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="What does your place look like ?"
+                android:text="Pricing and others ...?"
                 android:textAppearance="@android:style/TextAppearance.Material.Widget.Toolbar.Title"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -36,35 +36,24 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="35dp"
-                android:text="First lets narrow things down"
-                android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-            <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="35dp"
-                android:text="How many rooms are you renting ?"
+                android:text="How much is the monthly rent?"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/optionsRecylerView" />
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <EditText
-                android:id="@+id/noOfRooms"
+                android:id="@+id/rentAmount"
                 style="@android:style/Widget.Material.EditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
-                android:hint="number of rooms"
+                android:hint="rent in rupees"
                 android:inputType="number"
                 android:maxLines="1"
                 android:ems="10"
@@ -78,20 +67,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="35dp"
-                android:text="How many bathrooms for use?"
+                android:text="When is it available?"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/noOfRooms" />
+                app:layout_constraintTop_toBottomOf="@+id/rentAmount" />
 
             <EditText
-                android:id="@+id/noOfBathrooms"
+                android:id="@+id/datePicker"
                 style="@android:style/Widget.Material.EditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
-                android:hint="number of bathrooms"
-                android:inputType="number"
+                android:hint="date available"
+                android:inputType="none"
                 android:maxLines="1"
                 android:ems="10"
                 app:layout_constraintStart_toStartOf="parent"
@@ -103,36 +92,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="35dp"
-                android:text="What floor is it located at ?"
+                android:text="Anything else you want to add"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/noOfBathrooms" />
+                app:layout_constraintTop_toBottomOf="@+id/datePicker" />
 
             <EditText
-                android:id="@+id/floorCount"
+                android:id="@+id/description"
                 style="@android:style/Widget.Material.EditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="8dp"
-                android:hint="floor number"
-                android:maxLines="1"
-                android:ems="10"
-                android:inputType="number"
+                android:hint="missing details"
+                android:inputType="textMultiLine"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/optionsRecylerView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/textView9"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         </android.support.constraint.ConstraintLayout>
 

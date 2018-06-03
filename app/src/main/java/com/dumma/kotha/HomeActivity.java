@@ -52,6 +52,7 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         bottomSheetBehavior.setSkipCollapsed(true);
         bottomSheetBehavior.setHideable(true);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
     }
 
     private void initUI() {
@@ -71,7 +72,6 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add:
-//                startActivity(AddNoteActivity.getIntent(this));
 //                bottomSheetBehavior.setPeekHeight(400);
 //                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 startActivity(AddListingActivity.getIntent(this));

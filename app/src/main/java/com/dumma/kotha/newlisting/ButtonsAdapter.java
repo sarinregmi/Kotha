@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.dumma.kotha.R;
-import com.dumma.kotha.newlisting.models.Listing;
+import com.dumma.kotha.newlisting.models.TYPE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +19,11 @@ import java.util.List;
  */
 public class ButtonsAdapter extends RecyclerView.Adapter<ButtonsAdapter.ViewHolder> {
 
-    private ArrayList<Listing.TYPE> buttonItems;
+    private ArrayList<TYPE> buttonItems;
     private Context context;
     private int selectedIndex;
 
-    public ButtonsAdapter(Context context, List<Listing.TYPE> items) {
+    public ButtonsAdapter(Context context, List<TYPE> items) {
         this.context = context;
         this.buttonItems = new ArrayList<>();
         buttonItems.addAll(items);
@@ -55,7 +55,7 @@ public class ButtonsAdapter extends RecyclerView.Adapter<ButtonsAdapter.ViewHold
         return buttonItems.size();
     }
 
-    public Listing.TYPE getSelectedType() {
+    public TYPE getSelectedType() {
         if (selectedIndex != -1) {
             return buttonItems.get(selectedIndex);
         }

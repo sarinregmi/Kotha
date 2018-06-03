@@ -14,8 +14,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 
 
 /**
@@ -32,8 +30,7 @@ public class LocationManager extends LiveData<Location> implements LocationListe
 
     public LocationManager(Activity activity) {
         this.activity = activity;
-        googleApiClient =
-                new GoogleApiClient.Builder(activity, this, this)
+        googleApiClient = new GoogleApiClient.Builder(activity, this, this)
                         .addApi(LocationServices.API)
                         .build();
     }
@@ -63,22 +60,14 @@ public class LocationManager extends LiveData<Location> implements LocationListe
         if (requestLocationPermissionsIfNecessary()) {
             try {
                 LocationServices.getFusedLocationProviderClient(activity).getLastLocation()
-                        .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
-                            @Override
-                            public void onSuccess(Location loc) {
-                                if (loc != null) {
-                                    Log.v(TAG, "Oooh got the location");
-                                    setValue(loc);
-                                } else {
-                                    Log.v(TAG, "Did not get location");
-                                }
+                        .addOnSuccessListener(activity, loc -> {
+                            if (loc != null) {
+                                Log.v(TAG, "Oooh got the location");
+                                setValue(loc);
+                            } else {
+                                Log.v(TAG, "Did not get location");
                             }
-                        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "Error trying to get last GPS location");
-                    }
-                });
+                        }).addOnFailureListener(e -> Log.d(TAG, "Error trying to get last GPS location"));
             } catch (SecurityException e)  {
                 Log.e(TAG, "Exception: " +  e.getMessage());
             }
@@ -97,11 +86,10 @@ public class LocationManager extends LiveData<Location> implements LocationListe
 
     @Override
     public void onConnectionSuspended(int i) {
-        // TODO
    }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        // TODO
+        Log.e(TAG, "Exception: " +  connectionResult.getErrorMessage());
     }
 }

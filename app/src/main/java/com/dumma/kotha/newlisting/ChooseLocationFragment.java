@@ -3,6 +3,7 @@ package com.dumma.kotha.newlisting;
 import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 
 
-public class ChooseLocationFragment extends AddListingFragment implements OnMapReadyCallback, GoogleMap.OnCameraIdleListener {
+public class ChooseLocationFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnCameraIdleListener {
 
     public static String TAG = ChooseLocationFragment.class.getSimpleName();
     private LocationSetListener locationSetListener;

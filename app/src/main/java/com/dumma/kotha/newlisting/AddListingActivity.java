@@ -1,5 +1,6 @@
 package com.dumma.kotha.newlisting;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -11,11 +12,13 @@ import android.support.v7.widget.Toolbar;
 
 import com.dumma.kotha.R;
 import com.dumma.kotha.newlisting.models.BasicDetailsModel;
+import com.dumma.kotha.newlisting.models.PricingDetailsModel;
+import com.dumma.kotha.viewmodel.AddListingViewModel;
 
-public class AddListingActivity extends AppCompatActivity implements ChooseLocationFragment.LocationSetListener, BasicDetailsFragment.BasicDetailsSetListener {
+public class AddListingActivity extends AppCompatActivity implements ChooseLocationFragment.LocationSetListener,
+        BasicDetailsFragment.BasicDetailsSetListener, PricingDetailsFragment.PricingDetailsSetListener {
 
-    private Location location;
-    private BasicDetailsModel bdm;
+    private AddListingViewModel viewModel;
 
     public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, AddListingActivity.class);
@@ -31,8 +34,10 @@ public class AddListingActivity extends AppCompatActivity implements ChooseLocat
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_clear_24);
 
+        viewModel = ViewModelProviders.of(this).get(AddListingViewModel.class);
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_container, ChooseLocationFragment.newInstance(), ChooseLocationFragment.TAG);
+        transaction.add(R.id.fragment_container, ListingFragment.newInstance(), ListingFragment.TAG);
         transaction.commit();
     }
 
@@ -42,23 +47,31 @@ public class AddListingActivity extends AppCompatActivity implements ChooseLocat
         return false;
     }
 
-    @Override
-    public void submitLocation(Location location) {
-        this.location = location;
-        replaceFragment(BasicDetailsFragment.newInstance(), BasicDetailsFragment.TAG);
-    }
-
     private void replaceFragment(Fragment f, String tag) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left,android.R.anim.slide_in_left,android.R.anim.slide_out_right)
                 .replace(R.id.fragment_container, f,tag)
                 .addToBackStack(tag)
                 .commit();
+    }
 
+    @Override
+    public void submitLocation(Location location) {
+        viewModel.setLocation(location);
+        replaceFragment(BasicDetailsFragment.newInstance(), BasicDetailsFragment.TAG);
     }
 
     @Override
     public void submitBasicDetails(BasicDetailsModel model) {
+        viewModel.setBasicDetails(model);
+        replaceFragment(PricingDetailsFragment.newInstance(), PricingDetailsFragment.TAG);
+    }
 
+    @Override
+    public void submitPricingDetails(PricingDetailsModel model) {
+        viewModel.setPricingDetails(model);
+        viewModel.addListing().observe(this, aBoolean -> {
+            // show detail activity
+        });
     }
 }

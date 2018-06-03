@@ -1,5 +1,7 @@
 package com.dumma.kotha.newlisting.models;
 
+import android.location.Location;
+
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
 import java.text.NumberFormat;
@@ -14,52 +16,45 @@ import java.util.Locale;
 @IgnoreExtraProperties
 public class Listing  {
 
-    public enum TYPE {
 
-        FLAT ("Flat"),
-        ROOMS("Rooms"),
-        HOUSE("House"),
-        SHUTTER("Shutter"),
-        SHUTTER_WITH_ROOMS("Shutter with rooms");
 
-        private String value;
-
-        TYPE(final String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-    }
-
-    private String title;
-    private String author;
-    private String description;
+    private String id;
+    private User author;
     private List<String> images;
-    private double price;
-    private long availableDate;
     private long postingDate;
     private int views;
     private double latitude;
     private double longitude;
-    private int numberOfRooms;
-    private int numberOfBathroom;
-    private boolean isSharedBath;
+
+    private BasicDetailsModel basicDetailsModel;
+    private PricingDetailsModel pricingDetailsModel;
+
 
     public Listing() {}
 
+    public void setBasicDetails(BasicDetailsModel bdm) {
+        this.basicDetailsModel = bdm;
+    }
+
+    public void setPricingDetails(PricingDetailsModel pdm) {
+        this.pricingDetailsModel = pdm;
+    }
+
+    public void setLocation(Location location) {
+        this.latitude = location.getLatitude();
+        this.longitude = location.getLongitude();
+    }
+
+    public void setPostingDate(long date) {
+        this.postingDate = date;
+    }
 
     public String getTitle() {
-        return title;
+        return null;
     }
 
-    public String getAuthor() {
+    public User getAuthor() {
         return author;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public List<String> getImages() {
@@ -69,12 +64,8 @@ public class Listing  {
     public String getPrice() {
         NumberFormat format = NumberFormat.getCurrencyInstance(Locale.getDefault());
         format.setCurrency(Currency.getInstance("NPR"));
-        String result = format.format(price);
+        String result = format.format(pricingDetailsModel.getRentAmount());
         return result;
-    }
-
-    public long getAvailableDate() {
-        return availableDate;
     }
 
     public long getPostingDate() {
@@ -92,4 +83,5 @@ public class Listing  {
     public double getLongitude() {
         return longitude;
     }
+
 }
