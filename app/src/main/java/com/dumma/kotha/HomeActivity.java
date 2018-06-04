@@ -1,19 +1,22 @@
 package com.dumma.kotha;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.dumma.kotha.newlisting.AddListingActivity;
 import com.dumma.kotha.newlisting.models.Listing;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,6 +31,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class HomeActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
          ActivityCompat.OnRequestPermissionsResultCallback {
 
@@ -38,24 +44,74 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     private LocationManager locationManager;
     private BottomSheetBehavior bottomSheetBehavior;
 
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        ButterKnife.bind(this);
         initUI();
 
         listings = new ArrayList<>();
-
         View bottomSheet = findViewById( R.id.bottom_sheet);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
-        bottomSheetBehavior.setSkipCollapsed(true);
         bottomSheetBehavior.setHideable(true);
+        bottomSheetBehavior.setSkipCollapsed(true);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
+        bottomSheet.setOnDragListener((view, dragEvent) -> {
+            viewPager.animate().translationY(dragEvent.getY()).alpha(0.0f)
+                    .setDuration(300)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            viewPager.clearAnimation();
+                        }
+                    });
+            return false;
+        });
+
+        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                        toolbar.setVisibility(View.VISIBLE);
+                        viewPager.setVisibility(View.GONE);
+                        break;
+                    case BottomSheetBehavior.STATE_EXPANDED:
+                        toolbar.setVisibility(View.GONE);
+                        viewPager.setVisibility(View.VISIBLE);
+                        break;
+                    case BottomSheetBehavior.STATE_COLLAPSED:
+                        toolbar.setVisibility(View.VISIBLE);
+                        viewPager.setVisibility(View.GONE);
+                        break;
+                    case BottomSheetBehavior.STATE_DRAGGING:
+
+
+                        break;
+                    case BottomSheetBehavior.STATE_SETTLING:
+                        break;
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+
+            }
+        });
     }
 
     private void initUI() {
+        setSupportActionBar(toolbar);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -72,9 +128,9 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add:
-//                bottomSheetBehavior.setPeekHeight(400);
-//                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                startActivity(AddListingActivity.getIntent(this));
+                bottomSheetBehavior.setPeekHeight(400);
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+//                startActivity(AddListingActivity.getIntent(this));
                 break;
             default:
                 break;

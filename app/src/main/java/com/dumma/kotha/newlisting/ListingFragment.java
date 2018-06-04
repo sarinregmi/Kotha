@@ -13,6 +13,8 @@ import com.dumma.kotha.R;
 import com.dumma.kotha.views.ImagePagerAdapter;
 import com.dumma.kotha.views.TitleSubtitleView;
 
+import java.util.Arrays;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -41,6 +43,10 @@ public class ListingFragment extends Fragment {
         return fragment;
     }
 
+
+    String[] imageUrls = {"https://images.pexels.com/photos/259600/pexels-photo-259600.jpeg?auto=compress&cs=tinysrgb&h=300",
+            "https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&h=300"};
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +63,7 @@ public class ListingFragment extends Fragment {
 
         imagePagerAdapter = new ImagePagerAdapter(getFragmentManager());
         imagePager.setAdapter(imagePagerAdapter);
+        imagePagerAdapter.setImageUrls(Arrays.asList(imageUrls));
         return v;
     }
 
