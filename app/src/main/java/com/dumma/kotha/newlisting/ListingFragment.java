@@ -59,8 +59,40 @@ public class ListingFragment extends Fragment {
         ButterKnife.bind(this, v);
         posted.setSubtitleText("March 25 1990");
         available.setSubtitleText("May 25, 2018");
-        description.setSubtitleText("THis is the most beautiful place in the earth");
-
+        description.setSubtitleText("\n" +
+                "Federal Democratic Republic of Nepal\n" +
+                "सङ्घीय लोकतान्त्रिक गणतन्त्र नेपाल (Nepali)\n" +
+                "Sanghiya Loktāntrik Ganatantra Nepāl\n" +
+                "Flag of Nepal\n" +
+                "Flag\n" +
+                "Emblem of Nepal\n" +
+                "Emblem\n" +
+                "Motto: जननी जन्मभूमिश्च स्वर्गादपि गरीयसी (Sanskrit)\n" +
+                "Mother and Motherland are Greater than Heaven (English)\n" +
+                "Anthem: सयौं थुँगा फूलका (Nepali)\n" +
+                "Made of Hundreds of Flowers (English)\n" +
+                "MENU0:00\n" +
+                "Location of Nepal\n" +
+                "Location of Nepal\n" +
+                "Capital\n" +
+                "and largest city\tKathmandu\n" +
+                "28°10′N 84°15′ECoordinates: 28°10′N 84°15′E\n" +
+                "Official languages\tNepali\n" +
+                "Recognised regional languages\t\n" +
+                "Awadhi Bhojpuri Bajjika Doteli Gurung Kiranti Limbu Magar Maithili Newar Rai Sherpa Tamang Tharu Urdu[1]\n" +
+                "Ethnic groups (2011[2] [needs update])\t\n" +
+                "Ethnic demography[show]\n" +
+                "Religion\t81.3% Hinduism\n" +
+                "9% Buddhism\n" +
+                "4.4% Islam\n" +
+                "3% Kirant\n" +
+                "1.4% Christianity\n" +
+                "0.4% Animism\n" +
+                "0.5% Irreligion[3][4]\n" +
+                "Demonym\tNepalese\n" +
+                "Government\tFederal parliamentary republic\n" +
+                "• President\n" +
+                ".नेपाल\n");
         imagePagerAdapter = new ImagePagerAdapter(getFragmentManager());
         imagePager.setAdapter(imagePagerAdapter);
         imagePagerAdapter.setImageUrls(Arrays.asList(imageUrls));

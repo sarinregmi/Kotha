@@ -5,20 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.dumma.kotha.newlisting.ListingFragment">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:layout_height="match_parent">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            app:layout_constraintEnd_toEndOf="parent"
             android:visibility="gone"
-            android:animateLayoutChanges="true"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,7 +32,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/viewPager" />
+            app:layout_constraintTop_toBottomOf="@+id/viewPager" />
 
         <com.dumma.kotha.views.TitleSubtitleView
             android:id="@+id/posted"
@@ -68,30 +71,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/available"
-            app:subtitleText="March 25 2018"
             app:titleText="More Details..." />
-
-
-        <Button
-            android:id="@+id/contactOwner"
-            style="@style/nextButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="bottom"
-            android:layout_margin="16dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="20dp"
-            android:text="Contact Owner"
-            app:layout_constraintEnd_toStartOf="parent"
-            app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/description" />
-
 
         <View
             android:id="@+id/dummy"
-            app:layout_constraintTop_toBottomOf="@id/contactOwner"
+            app:layout_constraintTop_toBottomOf="@id/description"
             android:layout_width="match_parent"
             android:layout_height="15dp"/>
     </android.support.constraint.ConstraintLayout>
