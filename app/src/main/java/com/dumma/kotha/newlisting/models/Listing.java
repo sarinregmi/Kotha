@@ -2,6 +2,7 @@ package com.dumma.kotha.newlisting.models;
 
 import android.location.Location;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.IgnoreExtraProperties;
 import com.google.firebase.firestore.ServerTimestamp;
 
@@ -20,7 +21,7 @@ import java.util.Date;
 public class Listing  {
 
     private String id;
-    private User author;
+    private FirebaseUser author;
     private List<String> images;
     private int views;
     private double latitude;
@@ -51,7 +52,7 @@ public class Listing  {
         return null;
     }
 
-    public User getAuthor() {
+    public FirebaseUser getAuthor() {
         return author;
     }
 
