@@ -59,8 +59,7 @@ public class ListingFragment extends Fragment {
         ButterKnife.bind(this, v);
         posted.setSubtitleText("March 25 1990");
         available.setSubtitleText("May 25, 2018");
-        description.setSubtitleText("\n" +
-                "Federal Democratic Republic of Nepal\n" +
+        description.setSubtitleText("Federal Democratic Republic of Nepal\n" +
                 "सङ्घीय लोकतान्त्रिक गणतन्त्र नेपाल (Nepali)\n" +
                 "Sanghiya Loktāntrik Ganatantra Nepāl\n" +
                 "Flag of Nepal\n" +

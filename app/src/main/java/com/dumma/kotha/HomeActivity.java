@@ -6,20 +6,17 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.dumma.kotha.newlisting.AddListingActivity;
 import com.dumma.kotha.newlisting.models.Listing;
-import com.dumma.kotha.views.ImagePagerAdapter;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -31,7 +28,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -47,26 +43,14 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     private LocationManager locationManager;
     private BottomSheetBehavior bottomSheetBehavior;
 
-    @BindView(R.id.viewPager)
-    ViewPager viewPager;
-
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
     @BindView(R.id.bottom_sheet)
     View bottomSheet;
 
-    @BindView(R.id.thumbnail)
-    ImageView thumbnail;
-
     @BindView(R.id.appbar)
     AppBarLayout appBar;
-
-    @BindView(R.id.contact)
-    FloatingActionButton contact;
-
-    String[] imageUrls = {"https://images.pexels.com/photos/259600/pexels-photo-259600.jpeg?auto=compress&cs=tinysrgb&h=300",
-            "https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&h=300"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,26 +72,15 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
         bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
-
             }
 
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                viewPager.animate().translationY(-slideOffset * viewPager.getHeight()).setDuration(0).start();
-
                 if (slideOffset > 0) {
                     appBar.animate().translationY(-slideOffset * appBar.getHeight()).setDuration(0).start();
-                    thumbnail.animate().scaleX(1 - slideOffset).scaleY(1 - slideOffset).setDuration(0).start();
-                } else {
-                    contact.animate().scaleX(1 + slideOffset).scaleY(1 + slideOffset).setDuration(0).start();
                 }
-
             }
         });
-
-        ImagePagerAdapter imagePagerAdapter = new ImagePagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(imagePagerAdapter);
-        imagePagerAdapter.setImageUrls(Arrays.asList(imageUrls));
     }
 
 
@@ -121,8 +94,8 @@ public class HomeActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add:
-                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-//                startActivity(AddListingActivity.getIntent(this));
+//                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                startActivity(AddListingActivity.getIntent(this));
                 break;
             default:
                 break;

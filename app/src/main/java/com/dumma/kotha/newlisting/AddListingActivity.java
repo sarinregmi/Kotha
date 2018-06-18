@@ -37,7 +37,7 @@ public class AddListingActivity extends AppCompatActivity implements ChooseLocat
         viewModel = ViewModelProviders.of(this).get(AddListingViewModel.class);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_container, ListingFragment.newInstance(), ListingFragment.TAG);
+        transaction.add(R.id.fragment_container, ChooseLocationFragment.newInstance(), ChooseLocationFragment.TAG);
         transaction.commit();
     }
 
@@ -72,6 +72,7 @@ public class AddListingActivity extends AppCompatActivity implements ChooseLocat
         viewModel.setPricingDetails(model);
         viewModel.addListing().observe(this, aBoolean -> {
             // show detail activity
+
         });
     }
 }

@@ -3,11 +3,14 @@ package com.dumma.kotha.newlisting.models;
 import android.location.Location;
 
 import com.google.firebase.firestore.IgnoreExtraProperties;
+import com.google.firebase.firestore.ServerTimestamp;
 
 import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
+import java.util.Date;
+
 
 /**
  * Created by sregmi on 5/25/18.
@@ -16,15 +19,14 @@ import java.util.Locale;
 @IgnoreExtraProperties
 public class Listing  {
 
-
-
     private String id;
     private User author;
     private List<String> images;
-    private long postingDate;
     private int views;
     private double latitude;
     private double longitude;
+    private @ServerTimestamp Date postingDate;
+
 
     private BasicDetailsModel basicDetailsModel;
     private PricingDetailsModel pricingDetailsModel;
@@ -43,10 +45,6 @@ public class Listing  {
     public void setLocation(Location location) {
         this.latitude = location.getLatitude();
         this.longitude = location.getLongitude();
-    }
-
-    public void setPostingDate(long date) {
-        this.postingDate = date;
     }
 
     public String getTitle() {
@@ -68,7 +66,7 @@ public class Listing  {
         return result;
     }
 
-    public long getPostingDate() {
+    public Date getPostingDate() {
         return postingDate;
     }
 

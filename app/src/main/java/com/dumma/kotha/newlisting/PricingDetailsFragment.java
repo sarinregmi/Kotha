@@ -83,7 +83,7 @@ public class PricingDetailsFragment extends Fragment implements DatePickerDialog
          if (TextUtils.isEmpty(rent)) {
              rentAmountET.requestFocus();
             message = "Rent price is missing";
-        } else if (date > 0) {
+        } else if (date < 0) {
              datePickerET.requestFocus();
             message = "Available date is missing";
         } else if (TextUtils.isEmpty(description)) {
